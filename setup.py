@@ -5,6 +5,6 @@ setup(
     version='0.2',
     packages=find_packages(),
     install_requires=[
-        'discord', 'aiohttp', 'PIL', 'requests'
+        'discord', 'aiohttp', 'pillow', 'requests'
     ],
 )
