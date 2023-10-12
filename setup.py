@@ -5,6 +5,6 @@ setup(
     version='0.2',
     packages=find_packages(),
     install_requires=[
-        'pycord', 'aiohttp', 'pillow', 'requests'
+        'py-cord', 'aiohttp', 'pillow', 'requests'
     ],
 )
