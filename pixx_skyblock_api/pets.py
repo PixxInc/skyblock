@@ -1,7 +1,7 @@
 import discord
 import aiohttp
 
-class PetMenuView(discord.ui.View):
+class PetMenuView(BaseMenuView):
     def __init__(self, pets_data, user_uuid, api_key):
         super().__init__()
         self.pets_data = pets_data
@@ -18,9 +18,6 @@ class PetMenuView(discord.ui.View):
     async def next_pet(self, button, interaction):
         self.current_index = (self.current_index + 1) % len(self.pets_data)
         await interaction.response.edit_message(embed=self.create_pet_embed(), view=self)
-
-    @discord.ui.button(label="Home", style=discord.ButtonStyle.secondary, emoji="🏠")
-    await home(self, button, interaction)
 
     def create_pet_embed(self):
         pet = self.pets_data[self.current_index]
