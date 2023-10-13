@@ -53,13 +53,24 @@ async def convert_usename_to_uuid(username):
 async def fetch_skyblock_profile_data(api_key, user_uuid):
     url = f"https://api.hypixel.net/skyblock/profiles?key={api_key}&uuid={user_uuid}"
     
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url) as response:
-            if response.status != 200:
-                print(f"Error fetching skyblock profile: {response.status}")
-                return None
-            data = await response.json()
-            return data
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as response:
+                if response.status != 200:
+                    print(f"Error fetching skyblock profile: {response.status}")
+                    return None
+                data = await response.json()
+                return data
+    except aiohttp.ClientError as e:
+        print(f"HTTP Client Error: {e}")
+        return None
+    except json.JSONDecodeError as e:
+        print(f"JSON Decode Error: {e}")
+        return None
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+        return None
+
 
 async def convert_uuid_to_username(uuid):
     url = f"https://api.mojang.com/user/profiles/{uuid}/names"
