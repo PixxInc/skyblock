@@ -20,18 +20,7 @@ class PetMenuView(discord.ui.View):
         await interaction.response.edit_message(embed=self.create_pet_embed(), view=self)
 
     @discord.ui.button(label="Home", style=discord.ButtonStyle.secondary, emoji="🏠")
-    async def home(self, button, interaction):
-
-        main_menu_view = MyView()
-        embed = discord.Embed(title="SkyBlock Functions Menu", description="Select an option below:")
-
-        embed.add_field(name=":bar_chart: Player Profiles", value="Get SkyBlock player profiles.", inline=True)
-        embed.add_field(name=":busts_in_silhouette: User Online Check", value="Check the online status of a specific player.", inline=True)
-        embed.add_field(name=":department_store: Bazaar", value="Search for Bazaar prices.", inline=True)
-        embed.add_field(name=":hammer: Auctions", value="View active auctions.", inline=True)
-        embed.add_field(name=":classical_building: Elections and Mayors", value="Information about elections and mayors.", inline=True)
-        embed.add_field(name="⚙️ More soon", value="Nothing here yet", inline=True)
-        await interaction.response.send_message(embed=embed, view=main_menu_view)
+    await home(self, button, interaction)
 
     def create_pet_embed(self):
         pet = self.pets_data[self.current_index]
